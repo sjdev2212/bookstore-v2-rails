@@ -10,6 +10,14 @@
       </ul>
     </div>
   <% end %>
+  <div> 
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div>
+    <%= form.label :price %>
+    <%= form.number_field :price %>
+  </div>
 
   <div>
     <%= form.submit %>
