@@ -18,5 +18,14 @@ module RubyRailsPostgres
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+
+    config.before_configuration do
+      env_file = File.join(Rails.root, '.env')
+      if File.exist?(env_file)
+        require 'dotenv'
+        Dotenv.load(env_file)
+      end
+    end
   end
 end
