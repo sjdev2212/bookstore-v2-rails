@@ -11,9 +11,7 @@ class SessionsController < ApplicationController
     end
   
     def destroy
-      # Implement logout logic if needed
-      # For JWT, you often handle logout on the client-side (e.g., by removing the token)
-      render json: { message: 'Logged out successfully' }
+  render json: { message: 'Logged out successfully' }
     end
   
     private
