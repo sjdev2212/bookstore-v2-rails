@@ -15,6 +15,30 @@
     <%= form.text_field :title %>
   </div>
   <div>
+    <%= form.label :author %>
+    <%= form.text_field :author %>
+  </div>
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+<div>
+    <%= form.label :date_of_publication%>
+    <%= form.date_field :date_of_publication %>
+  </div>
+  <div>
+    <%= form.label :isbn %>
+    <%= form.number_field :isbn %>
+  </div>
+  <div>
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+  <div>
+    <%= form.label :genre %>
+    <%= form.text_field :genre %>
+
+  <div>
     <%= form.label :price %>
     <%= form.number_field :price %>
   </div>

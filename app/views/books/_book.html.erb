@@ -7,4 +7,16 @@
     <strong>Price:</strong>
     <%= book.price %>
         </div>
+<div>
+    <strong>Author:</strong>
+    <%= book.author %>
+        </div>
 </div>
+<div>
+<%= book.genre%>
+
+</div>
+
+<% if book.image.attached? %>
+    <%= cl_image_tag book.image.key, :width=>150, :crop=>"fill" %>
+<% end %>

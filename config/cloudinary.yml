@@ -1,0 +1,21 @@
+development:
+  cloud_name: 'db1yj4fpr'
+  api_key: '737575893176819'
+  api_secret: 'EtKmUeIpBNr-DXaWKhcV_G7roAw'
+  secure: true
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: 'db1yj4fpr'
+  api_key: '737575893176819'
+  api_secret: 'EtKmUeIpBNr-DXaWKhcV_G7roAw'
+  secure: true
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name:  'db1yj4fpr'
+  api_key: '737575893176819'
+  api_secret: 'EtKmUeIpBNr-DXaWKhcV_G7roAw'
+  secure: true
+  enhance_image_tag: true
+  static_file_support: false

@@ -52,6 +52,7 @@ gem "bootsnap", require: false
 gem 'bcrypt', "~> 3.1.7"
 gem 'jwt', '~> 2.7', '>= 2.7.1'
 gem 'rack-cors'
+gem 'cloudinary'
 
 gem 'dotenv-rails', groups: [:development, :test]
 group :development, :test do
