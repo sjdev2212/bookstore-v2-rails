@@ -7,7 +7,17 @@ class Api::BooksController < ApplicationController
 
   def show
     @book = Book.find_by_id(params[:id])
-    render json: @book
+    render json: {
+      id: @book.id,
+      title: @book.title,
+      price: @book.price,
+      author: @book.author,
+      description: @book.description,
+      isbn: @book.isbn,
+      genre: @book.genre,
+      image: url_for(@book.image),
+      # Add other attributes as needed
+    }
   end
 
   def create

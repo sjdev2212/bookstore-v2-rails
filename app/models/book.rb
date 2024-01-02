@@ -1,7 +1,7 @@
 class Book < ApplicationRecord
   has_one_attached :image
 
-  def as_json(options = {})
+def as_json(options = {})
     super(options.merge({
                           methods: [:image_url],
                         }))
@@ -14,5 +14,6 @@ class Book < ApplicationRecord
     else
       nil
     end
-  end
+  end 
 end
+
