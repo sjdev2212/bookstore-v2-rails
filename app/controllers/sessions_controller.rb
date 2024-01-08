@@ -1,14 +1,19 @@
 class SessionsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :create
+
   def create
     user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
+  
+    if !user
+      render json: { error: 'User does not exist' }, status: :not_found
+    elsif !user.authenticate(params[:password])
+      render json: { error: 'Invalid email or password' }, status: :unauthorized
+    else
       token = generate_token(user)
       render json: { token: token }
-    else
-      render json: { error: 'Invalid email or password' }, status: :unauthorized
     end
   end
+  
 
   def destroy
     render json: { message: 'Logged out successfully' }
