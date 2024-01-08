@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       render json: { error: 'Invalid email or password' }, status: :unauthorized
     else
       token = generate_token(user)
-      render json: { token: token }
+      render json: { user: user, token: token}
     end
   end
   
