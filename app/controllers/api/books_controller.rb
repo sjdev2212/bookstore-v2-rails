@@ -33,9 +33,13 @@ class Api::BooksController < ApplicationController
   
 
   def update
-    @book = Book.find_by_id(params[:id])
-    @book.update(book_params)
-    render json: @book
+    @book = Book.find(params[:id])
+
+    if @book.update(book_params)
+      render json: @book.to_json(include: [:image]), status: :ok
+    else
+      render json: { error: 'Failed to update the book', details: @book.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def destroy
