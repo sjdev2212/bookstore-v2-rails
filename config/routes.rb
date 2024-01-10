@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         get 'filter_price'
       end
     end
+    resources :favorites, only: [:create, :destroy]
   end
   resources :users, only: [:create]
   post 'register', to: 'users#create'
