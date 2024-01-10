@@ -3,7 +3,7 @@ class Book < ApplicationRecord
   has_many :favorites
   has_many :favorited_by, through: :favorites, source: :user
 
-def as_json(options = {})
+  def as_json(options = {})
     super(options.merge({
                           methods: [:image_url],
                         }))
@@ -16,6 +16,5 @@ def as_json(options = {})
     else
       nil
     end
-  end 
+  end
 end
-

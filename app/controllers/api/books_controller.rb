@@ -16,21 +16,21 @@ class Api::BooksController < ApplicationController
       isbn: @book.isbn,
       genre: @book.genre,
       image: url_for(@book.image),
-      date: @book.date_of_publication 
+      date: @book.date_of_publication
       # Add other attributes as needed
     }
   end
+
   def create
     @book = Book.create(book_params)
-    
+
     if @book.valid?
       render json: @book.to_json(include: [:image]), status: :created
     else
-      render json: { error: 'Failed to create the book', details: @book.errors.full_messages }, status: :unprocessable_entity
+      render json: { error: 'Failed to create the book', details: @book.errors.full_messages },
+             status: :unprocessable_entity
     end
   end
-  
-  
 
   def update
     @book = Book.find(params[:id])
@@ -38,7 +38,8 @@ class Api::BooksController < ApplicationController
     if @book.update(book_params)
       render json: @book.to_json(include: [:image]), status: :ok
     else
-      render json: { error: 'Failed to update the book', details: @book.errors.full_messages }, status: :unprocessable_entity
+      render json: { error: 'Failed to update the book', details: @book.errors.full_messages },
+             status: :unprocessable_entity
     end
   end
 
@@ -48,15 +49,7 @@ class Api::BooksController < ApplicationController
     render json: { message: 'Book Deleted' }
   end
 
-
-
-
-
-private
-
-
-
-
+  private
 
   def book_params
     params.require(:book).permit(:title, :price, :genre, :author, :description, :image, :isbn, :date_of_publication)

@@ -4,7 +4,6 @@ class CreateFavorites < ActiveRecord::Migration[7.0]
       t.references :user, foreign_key: true, null: false
       t.references :book, foreign_key: true, null: false
 
-
       t.timestamps
     end
   end
