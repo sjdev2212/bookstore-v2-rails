@@ -1,7 +1,8 @@
 class Api::FavoritesController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:create]
   def create
-    current_user = User.find_by_id(session[:user_id])
-    @favorite = current_user.favorites.new(book_id: params[:book_id])
+    @user_id = params[:user_id]
+    @favorite = Favorite.create( user_id: @user_id, book_id: params[:book_id])
     if @favorite.save
       render json: { message: 'Book added to favorites' }
     else

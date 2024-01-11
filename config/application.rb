@@ -11,13 +11,7 @@ module RubyRailsPostgres
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
+ 
 
     config.before_configuration do
       env_file = File.join(Rails.root, '.env')
@@ -26,5 +20,13 @@ module RubyRailsPostgres
         Dotenv.load(env_file)
       end
     end
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'http://localhost:3000'
+        resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete], credentials: true
+      end
+    end
+
   end
 end

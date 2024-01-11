@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       end
     end
     resources :favorites, only: [:create, :destroy]
+    post 'favorites/:user_id/:book_id', to: 'favorites#create', as: :add_favorite
+    delete 'favorites/:user_id/:book_id', to: 'favorites#destroy', as: :remove_favorite
   end
   resources :users, only: [:create]
   post 'register', to: 'users#create'
