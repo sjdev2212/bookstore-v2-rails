@@ -13,9 +13,10 @@ Rails.application.routes.draw do
         get 'filter_price'
       end
     end
-    resources :favorites, only: [:create, :destroy]
+    resources :favorites, only: [:create, :destroy, :index, :favorite_per_user]
     post 'favorites/:user_id/:book_id', to: 'favorites#create', as: :add_favorite
     delete 'favorites/:user_id/:book_id', to: 'favorites#destroy', as: :remove_favorite
+    get 'favorites/:user_id', to: 'favorites#favorite_per_user', as: :favorite_per_user
   end
   resources :users, only: [:create]
   post 'register', to: 'users#create'
