@@ -1,14 +1,13 @@
 class Api::FavoritesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create, :destroy]
-def index 
+  def index
     @favorites = Favorite.all
     render json: @favorites
   end
 
-
   def create
     @user_id = params[:user_id]
-    @favorite = Favorite.create( user_id: @user_id, book_id: params[:book_id])
+    @favorite = Favorite.create(user_id: @user_id, book_id: params[:book_id])
     if @favorite.save
       render json: { message: 'Book added to favorites' }
     else
@@ -26,10 +25,8 @@ def index
     end
   end
 
-  def favorite_per_user 
+  def favorite_per_user
     @favorites = Favorite.where(user_id: params[:user_id])
-    @favorites_books =  @favorites.map { |favorite| Book.find(favorite.book_id) }
-    render json: @favorites_books
+    render json: @favorites
   end
-
 end
