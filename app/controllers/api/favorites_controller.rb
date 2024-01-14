@@ -28,7 +28,8 @@ def index
 
   def favorite_per_user 
     @favorites = Favorite.where(user_id: params[:user_id])
-    render json: @favorites
+    @favorites_books =  @favorites.map { |favorite| Book.find(favorite.book_id) }
+    render json: @favorites_books
   end
-  
+
 end
