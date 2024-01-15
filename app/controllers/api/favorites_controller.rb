@@ -16,7 +16,8 @@ class Api::FavoritesController < ApplicationController
   end
 
   def destroy
-    @favorite = current_user.favorites.find_by_id(params[:id])
+    @user_id = params[:user_id]
+    @favorite =  Favorite.find_by(user_id: @user_id, book_id: params[:book_id])
     if @favorite
       @favorite.destroy
       render json: { message: 'Book removed from favorites' }
@@ -26,7 +27,9 @@ class Api::FavoritesController < ApplicationController
   end
 
   def favorite_per_user
-    @favorites = Favorite.where(user_id: params[:user_id])
-    render json: @favorites
+    @favorites = Favorite.where(user_id: params[:user_id]).includes(book: { image_attachment: :blob })
+  
+    render json: @favorites.as_json(include: { book: { methods: [:image_url], only: [:id, :title, :author , :image_url] } })
   end
+  
 end
