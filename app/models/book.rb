@@ -17,4 +17,5 @@ class Book < ApplicationRecord
       nil
     end
   end
+
 end
