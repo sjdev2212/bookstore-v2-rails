@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       end
     end
     resources :favorites, only: [:create, :destroy, :index, :favorite_per_user]
+    resources :authors, only: [:index, :show, :create, :update, :destroy]
+    resources :publishers, only: [:index, :show, :create, :update, :destroy]
     post 'favorites/:user_id/:book_id', to: 'favorites#create', as: :add_favorite
     delete 'favorites/:user_id/:book_id', to: 'favorites#destroy', as: :remove_favorite
     get 'favorites/:user_id', to: 'favorites#favorite_per_user', as: :favorite_per_user

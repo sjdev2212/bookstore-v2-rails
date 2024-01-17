@@ -1,9 +1,7 @@
-class Book < ApplicationRecord
+class Author < ApplicationRecord
+  has_many :books
   has_one_attached :image
-  belongs_to :author
   belongs_to :publisher
-  has_many :favorites
-  has_many :favorited_by, through: :favorites, source: :user
 
   def as_json(options = {})
     super(options.merge({
