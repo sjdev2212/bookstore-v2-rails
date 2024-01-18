@@ -1,0 +1,39 @@
+<%= form_with(model: @author) do |form| %>
+  <% if @author.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@author.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+        <% @author.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div> 
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :nationality %>
+    <%= form.text_field :nationality %>
+  </div>
+  <div>
+    <%= form.label :biography %>
+    <%= form.text_area :biography %>
+  </div>
+<div>
+    <%= form.label :date_of_birth%>
+    <%= form.date_field :date_of_birth %>
+  </div>
+
+  <div>
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
