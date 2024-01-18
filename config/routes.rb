@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'users/create'
 
   resources :books
+  resources :authors
 
   namespace :api do
     resources :books do
