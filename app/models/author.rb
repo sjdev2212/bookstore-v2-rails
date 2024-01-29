@@ -1,7 +1,7 @@
 class Author < ApplicationRecord
   has_many :books
-  has_one_attached :image
-  belongs_to :publisher
+  has_one_attached :author_image
+
 
   def as_json(options = {})
     super(options.merge({
@@ -10,9 +10,9 @@ class Author < ApplicationRecord
   end
 
   def image_url
-    if image.attached?
+    if author_image.attached?
       # Use the Cloudinary service URL
-      Cloudinary::Utils.cloudinary_url(image.key, secure: true)
+      Cloudinary::Utils.cloudinary_url(author_image.key, secure: true)
     else
       nil
     end

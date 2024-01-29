@@ -14,23 +14,23 @@ class AuthorsController < ApplicationController
         @author  = Author.new
 end
 
-def create 
+def create
     @author = Author.new(author_params)
-
+  
     respond_to do |format|
-        if @author.save
-            format.html { redirect_to author_url(author), notice: "Author was successfully created." }
-            format.json { render :show, status: :created, location: author }
-        else
-            format.html { render :new, status: :unprocessable_entity }
-            format.json { render json: author.errors, status: :unprocessable_entity }
-        end
+      if @author.save
+        format.html { redirect_to author_url(@author), notice: "Author was successfully created." }
+        format.json { render :show, status: :created, location: @author }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @author.errors, status: :unprocessable_entity }
+      end
     end
-end 
-
+  end
+  
+  
 private
-
-def author_params 
-    params.require(:author).permit(:name, :date_of_birth, :biography, :nationality, :image)
-end 
+def author_params
+    params.require(:author).permit(:name, :date_of_birth, :biography, :nationality, :author_image)
+  end
 end

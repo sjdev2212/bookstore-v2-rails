@@ -17,13 +17,19 @@ class Api::AuthorsController < ApplicationController
       nationality: author.nationality
     }
   end
-
   def create
-    @author = Author.create(author_params)
-    if author.valid?
-      render json: author.to_json(include: [:image]), status: :created
+    @author = Author.new(author_params)
+
+    # Handle file upload separately
+    if params[:author][:image].present?
+      image_attachment = params[:author][:image]
+      @author.image.attach(image_attachment)
+    end
+
+    if @author.save
+      render json: @author.to_json(include: [:image]), status: :created
     else
-      render json: { error: 'Failed to create the author', details: author.errors.full_messages },
+      render json: { error: 'Failed to create the author', details: @author.errors.full_messages },
              status: :unprocessable_entity
     end
   end

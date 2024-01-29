@@ -1,15 +1,5 @@
-<%= form_with(model: @author) do |form| %>
-  <% if @author.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(@author.errors.count, "error") %> prohibited this book from being saved:</h2>
 
-      <ul>
-        <% @author.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for @author, html: { multipart: true } do |form| %>
   <div> 
     <%= form.label :name %>
     <%= form.text_field :name %>
@@ -26,14 +16,8 @@
     <%= form.label :date_of_birth%>
     <%= form.date_field :date_of_birth %>
   </div>
-
-  <div>
-    <%= form.label :image %>
-    <%= form.file_field :image %>
-  </div>
-
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <!-- form fields -->
+  <%= form.file_field :author_image %>
+  <!-- other fields and submit button -->
+  <%= form.submit %>
 <% end %>

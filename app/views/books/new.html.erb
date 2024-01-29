@@ -1,6 +1,55 @@
 <h1>New book</h1>
+<%= form_with(model: @book) do |form| %>
+  <% if @book.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
 
-<%= render "form", book: @book %>
+      <ul>
+        <% @book.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div> 
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+<div>
+  <%= form.label :author_id %>
+  <%= form.collection_select(:author_id, @authors, :id, :name, prompt: "Select an author") %>
+</div>
+
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+<div>
+    <%= form.label :date_of_publication%>
+    <%= form.date_field :date_of_publication %>
+  </div>
+  <div>
+    <%= form.label :isbn %>
+    <%= form.number_field :isbn %>
+  </div>
+  <div>
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+  <div>
+    <%= form.label :genre %>
+    <%= form.text_field :genre %>
+
+  <div>
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
 
 <br>
 

@@ -1,0 +1,19 @@
+<p style="color: green"><%= notice %></p>
+
+
+
+<div>
+<h2>
+<%= @author.name %>
+</h2>
+<div>
+<% if @author.author_image.attached? %>
+  <%= image_tag(@author.author_image) %>
+<% else %>
+  <p>No image attached</p>
+<% end %>
+
+</div>
+</div>
+  
+

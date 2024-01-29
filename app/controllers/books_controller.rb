@@ -13,6 +13,7 @@ class BooksController < ApplicationController
   # GET /books/new
   def new
     @book = Book.new
+    @authors = Author.all
   end
 
   # GET /books/1/edit
@@ -21,8 +22,8 @@ class BooksController < ApplicationController
 
   # POST /books or /books.json
   def create
+    @authors = Author.all
     @book = Book.new(book_params)
-
     respond_to do |format|
       if @book.save
         format.html { redirect_to book_url(@book), notice: "Book was successfully created." }
@@ -70,6 +71,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :price, :genre, :author, :description, :image, :isbn, :date_of_publication)
+    params.require(:book).permit(:title, :price, :genre, :author, :description, :image, :isbn, :date_of_publication, :author_id)
   end
 end
